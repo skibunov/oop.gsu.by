@@ -1,23 +1,31 @@
 //---------------------------------------------------------------------------
 //Скибунов Андрей
-//25. Дан массив целых чисел A[n][m]. В заданной строке массива каждый элемент, кроме первого, заменить суммой всех предыдущих.
+//23. Дан массив целых чисел A[n][m]. Определить, есть ли в массиве ровно две строки только с отрицательными элементами.
 #pragma hdrstop
 #include<stdio.h>
 #include<conio.h>
 //---------------------------------------------------------------------------
 
-//Функция нахождения и замены элементов суммой всех предыдущих.
-void sumBefore(int** array,int n, int m){
-  int sum = 0;
-  for(int i = 0; i < n; i++){
-    for (int j = 0; j < m; j++){
-      for (int k = 0; k <= j; k++)
-        sum = sum + array[i][k]; //Сумма предыдущих элементов с учетом замены
-
-      array[i][j] = sum;
-      sum = 0;
+bool foundTwoStrWithNegativ(int** array,int n, int m){
+  int colStr = 0;
+  for(int  i = 0; i < n; i++){
+    int j = 0;
+    for (j = 0; j < m; j++){
+      if(array[i][j] >= 0){
+        break;
+      }
     }
+    if (j == m){
+      colStr++;
+    }
+
+    if(colStr > 2){
+      return false;
+    }
+
   }
+
+  return true;
 }
 
 #pragma argsused
@@ -30,21 +38,19 @@ int main(int argc, char* argv[]){
   printf("Enter m - ");
   scanf("%d",&m);
 
-  //Выделение памяти под массив
-  int **array = new int*[n];
+  int **array;
+  array = new int*[n];
   for (int i = 0; i < n; i++){
     array[i] = new int[m];
   }
 
-  //Ввод массива с клавиатуры
   for(int i = 0; i < n; i++){
     for (int j = 0; j < m; j++){
-      printf("Enter array element[%i,%i] - ",i+1,j+1);
+      printf("Enter array element[%i,%i] - ",i,j);
       scanf("%d",&array[i][j]);
     }
   }
 
-  //Вывод базового(не измененного) массива
   printf("Base Array\n");
   for(int i = 0; i < n; i++){
     for (int j = 0; j < m; j++){
@@ -53,18 +59,19 @@ int main(int argc, char* argv[]){
     printf("\n");
   }
 
-  //Вызов функции, которая вычисляет сумму предыдущих и заменяет элемет на эту сумму
-  sumBefore(array,n,m);
+  bool cheackFound = foundTwoStrWithNegativ(array,n,m);
 
-  //Вывод измененного массива
-  printf("Rebase Array\n");
-  for(int i = 0; i < n; i++){
-    for (int j = 0; j < m; j++){
-      printf("%d ",array[i][j]);
-    }
-    printf("\n");
+  if(cheackFound){
+    printf("Found string with negativ = 2");
+  }
+  else{
+    printf("Found string with negativ != 2");
   }
 
+  delete []array;
+  for (int i = 0; i < n; i++){
+    delete *array;
+  }
 
   getch();
   return 0;

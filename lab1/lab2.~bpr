@@ -3,9 +3,9 @@
 <PROJECT>
   <MACROS>
     <VERSION value="BCB.06.00"/>
-    <PROJECT value="lab1.exe"/>
-    <OBJFILES value="lab1.obj"/>
-    <RESFILES value="lab1.res"/>
+    <PROJECT value="lab2.exe"/>
+    <OBJFILES value="lab2.obj"/>
+    <RESFILES value="lab2.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
     <DEFFILE value=""/>
@@ -29,20 +29,21 @@
     <LINKER value="ilink32"/>
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="NO_STRICT;_NO_VCL;_RTLDLL;USEPACKAGES"/>
-    <MAINSOURCE value="lab1.bpf"/>
-    <INCLUDEPATH value="D:\Programming\OOP\lab1;$(BCB)\include;$(BCB)\include\vcl"/>
-    <LIBPATH value="D:\Programming\OOP\lab1;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <MAINSOURCE value="lab2.bpf"/>
+    <INCLUDEPATH value="C:\Users\skibu\Documents\GitHub\oop.gsu.by\lab1;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="C:\Users\skibu\Documents\GitHub\oop.gsu.by\lab1;$(BCB)\lib\obj;$(BCB)\lib"/>
     <WARNINGS value="-w-par"/>
     <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
-    <IDLCFLAGS value="-ID:\Programming\OOP\lab1 -I$(BCB)\include -I$(BCB)\include\vcl 
-      -src_suffix cpp -D_DEBUG -boa"/>
-    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -tWC -tWM- -c"/>
+    <IDLCFLAGS value="-IC:\Users\skibu\Documents\GitHub\oop.gsu.by\lab1 -I$(BCB)\include 
+      -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-tWC -tWM- -Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y 
+      -v -vi- -c"/>
     <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
     <RFLAGS value=""/>
     <AFLAGS value="/mx /w2 /zd"/>
-    <LFLAGS value="-D&quot;&quot; -ap -Tpe -x -Gn -v"/>
+    <LFLAGS value="-Tpe -ap -D&quot;&quot; -x -Gn -v"/>
     <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
@@ -52,9 +53,9 @@
     <OTHERFILES value=""/>
   </LINKER>
   <FILELIST>
-      <FILE FILENAME="lab1.res" FORMNAME="" UNITNAME="lab1.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="lab1.bpf" FORMNAME="" UNITNAME="lab1" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="lab1.cpp" FORMNAME="" UNITNAME="lab1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lab2.res" FORMNAME="" UNITNAME="lab2.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lab2.bpf" FORMNAME="" UNITNAME="lab2" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lab2.cpp" FORMNAME="" UNITNAME="lab2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
   </FILELIST>
   <BUILDTOOLS>
   </BUILDTOOLS>
