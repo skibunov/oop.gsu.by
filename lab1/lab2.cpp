@@ -10,9 +10,9 @@
 int foundSubString(char *string){
   int max = 1;
   int count = 1;
-  int len = strlen(string) - 1;
-  for(int i = 0; i < len; i++){
-    if(*(string + i) == *(string + i - 1)){
+  char* t;
+  for(t = string; *t != '\0'; ++t){
+    if(*t == *(t+1)){
       count++;
     }
     else{
@@ -27,26 +27,6 @@ int foundSubString(char *string){
 
 #pragma argsused
 int main(int argc, char* argv[]){
-/*  char xx[] = "abcaab";
-  char* t;
-  int count = 0;
-  for(t = xx; *t; ++t)
-    if (*t == 'a')
-      count++;
-
-  t = xx;
-  while (*t){
-    if (*t == 'a')
-      count++;
-    t++;
-  }
-
-  printf("%d\n",count); */
-
-
-
-
-
   char* string = new char[256];
 
   puts("Enter string: ");
