@@ -44,6 +44,30 @@ int main(int argc, char* argv[]){
   bus33->print();
 
 
+/*  Bus b1;
+  b1.print();
+
+  Bus b2("AD","asd",5,10);
+  b2.print();
+
+  Bus b3(b2);
+  b3.print();
+
+  Bus b4("ABC;ad;15;14");
+  b4.print();
+
+  Bus *b11 = new Bus;
+  b11->print();
+
+  Bus *b21 = new Bus("AD","asd",5,10);
+  b21->print();
+
+  Bus *b31 = new Bus(*b21);
+  b31->print();
+
+  Bus *b41 = new Bus("ABC;ad;15;14");
+  b41->print(); */
+
   getch();
   return 0;
 }

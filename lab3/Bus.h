@@ -16,6 +16,13 @@ class Bus{
     int getSeat();
 
     void print();
-    void scan(); 
+    void scan();
+
+    Bus();
+    Bus(char* p, char* m, int n, int s);
+    Bus(Bus &b);
+    Bus(char *s);
+
+    //~Bus();
 
 };

@@ -39,7 +39,7 @@ void Bus::print(){
   printf("producer = %s; model = %s; number = %d; seat = %d;\n",producer,model,number,seat);
 }
 
-void Bus::scanf(){
+void Bus::scan(){
   printf("Enter producer:\n");
   scanf("%s",&producer);
   printf("Enter model:\n");
@@ -49,4 +49,39 @@ void Bus::scanf(){
   printf("Enter seat:\n");
   scanf("%d",&seat);
 }
- 
+
+Bus::Bus(){
+  producer[0] = '\0';
+  model[0] = '\0';
+  number = 0;
+  seat = 0;
+}
+
+Bus::Bus(char* p, char* m, int n, int s){
+  strcpy(producer,p);
+  strcpy(model,m);
+  number = n;
+  seat = s;
+}
+
+Bus::Bus(Bus &b){
+  strcpy(producer,b.getProducer());
+  strcpy(model,b.getModel());
+  number = b.getNumber();
+  seat = b.getSeat();
+}
+
+Bus::Bus(char *t){
+  char* value = strtok(t,";");
+
+  strcpy(producer,value);
+
+  value = strtok ('\0',";");
+  strcpy(model,value);
+
+  value = strtok ('\0',";");
+  number = atoi(value);
+
+  value = strtok ('\0',";");
+  seat = atoi(value);
+}
