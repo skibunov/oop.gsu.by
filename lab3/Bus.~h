@@ -23,6 +23,6 @@ class Bus{
     Bus(Bus &b);
     Bus(char *s);
 
-    ~Bus()
+    ~Bus();
 
 };

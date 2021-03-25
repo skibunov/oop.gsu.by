@@ -4,10 +4,16 @@
 #include "Bus.h"
 
 void Bus::setProducer(char* p){
+  delete[] producer;
+  producer = new char[80];
+  
   strcpy(producer,p);
 }
 
 void Bus::setModel(char* m){
+  delete[] model;
+  model = new char[80];
+
   strcpy(model,m);
 }
 
@@ -51,6 +57,9 @@ void Bus::scan(){
 }
 
 Bus::Bus(){
+  producer = new char[80];
+  model = new char[80];
+
   producer[0] = '\0';
   model[0] = '\0';
   number = 0;
@@ -58,6 +67,9 @@ Bus::Bus(){
 }
 
 Bus::Bus(char* p, char* m, int n, int s){
+  producer = new char[80];
+  model = new char[80];
+
   strcpy(producer,p);
   strcpy(model,m);
   number = n;
@@ -65,6 +77,9 @@ Bus::Bus(char* p, char* m, int n, int s){
 }
 
 Bus::Bus(Bus &b){
+  producer = new char[80];
+  model = new char[80];
+
   strcpy(producer,b.getProducer());
   strcpy(model,b.getModel());
   number = b.getNumber();
@@ -72,20 +87,16 @@ Bus::Bus(Bus &b){
 }
 
 Bus::Bus(char *t){
-  char* value = strtok(t,";");
+  producer = new char[80];
+  model = new char[80];
 
-  strcpy(producer,value);
-
-  value = strtok ('\0',";");
-  strcpy(model,value);
-
-  value = strtok ('\0',";");
-  number = atoi(value);
-
-  value = strtok ('\0',";");
-  seat = atoi(value);
+  strcpy(producer,t);
+  model[0] = '\0';
+  number = 0;
+  seat = 0;
 }
 
-/*Bus::~Bus(){
-  printf("Деструктор");
-}*/
+Bus::~Bus(){
+  delete[] producer;
+  delete[] model;
+}

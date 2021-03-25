@@ -1,7 +1,7 @@
 class Bus{
   private:
-    char producer[80];
-    char model[80];
+    char* producer;
+    char* model;
     int number;
     int seat;
   public:
@@ -23,6 +23,6 @@ class Bus{
     Bus(Bus &b);
     Bus(char *s);
 
-    //~Bus();
+    ~Bus();
 
 };
