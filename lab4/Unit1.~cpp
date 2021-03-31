@@ -11,7 +11,7 @@
 #pragma argsused
 int main(int argc, char* argv[]){
 
-/*  Driver kola;
+  Driver kola;
   kola.print();
 
   Driver vova("Vladimir",19,"MAZ","F145",1586,35);
@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
 
   Driver driverBus;
   driverBus.scan();
-  driverBus.print();  */
+  driverBus.print();
 
   Driver* ulia = new Driver;
   ulia->print();
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]){
   printf("fio - %s;\n", ylia->getFio());
   printf("age - %d;\n", ylia->getAge());
 
-  Driver driverBus12;
+  Driver* driverBus12 = new Driver;
   driverBus12->scan();
   driverBus12->print();
 

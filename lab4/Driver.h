@@ -5,6 +5,7 @@ class Driver : public Bus {
   public:
     Driver();
     Driver(char* f, int a, char* p, char* m, int n, int s);
+    Driver(Driver &b);
     ~Driver();
 
     void setFio(char* f);

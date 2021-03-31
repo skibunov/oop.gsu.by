@@ -1,7 +1,7 @@
 class Bus{
   private:
     char* producer;
-    char* model;
+    char model[80];
     int number;
     int seat;
   public:

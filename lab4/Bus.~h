@@ -5,6 +5,13 @@ class Bus{
     int number;
     int seat;
   public:
+    Bus();
+    Bus(char* p, char* m, int n, int s);
+    Bus(Bus &b);
+    Bus(char *s);
+
+    ~Bus();
+
     void setProducer(char* p);
     void setModel(char* m);
     void setNumber(int n);
@@ -17,12 +24,5 @@ class Bus{
 
     void print();
     void scan();
-
-    Bus();
-    Bus(char* p, char* m, int n, int s);
-    Bus(Bus &b);
-    Bus(char *s);
-
-    ~Bus();
 
 };

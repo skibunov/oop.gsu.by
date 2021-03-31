@@ -50,5 +50,5 @@ void Driver::scan(){
   printf("Enter fio:\n");
   scanf("%s",fio);
   printf("Enter age:\n");
-  scanf("%s",&age);
+  scanf("%d",&age);
 }

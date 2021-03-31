@@ -47,9 +47,9 @@ void Bus::print(){
 
 void Bus::scan(){
   printf("Enter producer:\n");
-  scanf("%s",&producer);
+  scanf("%s",producer);
   printf("Enter model:\n");
-  scanf("%s",&model);
+  scanf("%s",model);
   printf("Enter number:\n");
   scanf("%d",&number);
   printf("Enter seat:\n");

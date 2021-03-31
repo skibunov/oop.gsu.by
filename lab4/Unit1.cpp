@@ -17,6 +17,9 @@ int main(int argc, char* argv[]){
   Driver vova("Vladimir",19,"MAZ","F145",1586,35);
   vova.print();
 
+  Driver copy(vova);
+  copy.print();
+
   Driver yana;
   yana.setFio("Yana");
   yana.setAge(19);
@@ -37,6 +40,8 @@ int main(int argc, char* argv[]){
 
   Driver* sasha = new Driver("Sasha",19,"MAZ","F145",1586,35);
   sasha->print();
+
+
 
   Driver* vlad = new Driver;
   vlad->setFio("Vlad");

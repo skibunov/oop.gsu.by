@@ -5,17 +5,24 @@
 #include "Driver.h"
 
 Driver::Driver(){
-  fio = new char[80];
+  fio = new char;
 
   fio[0] = '\0';
   age = 0;
 }
 
 Driver::Driver(char* f, int a, char* p, char* m, int n, int s) : Bus(p, m, n, s){
-  fio = new char[80];
+  fio = new char[strlen(f)+1];
 
   strcpy(fio,f);
   age = a;
+}
+
+Driver::Driver(Driver &b) : Bus(b){
+   fio = new char[strlen(b.getFio())+1];
+
+   strcpy(fio,b.getFio());
+   age = b.getAge();
 }
 
 Driver::~Driver(){
@@ -25,7 +32,7 @@ Driver::~Driver(){
 
 void Driver::setFio(char* f){
   delete[] fio;
-  fio = new char[80];
+  fio = new char[strlen(f)+1];
   
   strcpy(fio,f);
 }
@@ -44,6 +51,7 @@ int Driver::getAge(){
 
 void Driver::print(){
   printf("fio = %s; age = %d;\n",fio,age);
+  Bus::print();
 }
 
 void Driver::scan(){
@@ -51,4 +59,5 @@ void Driver::scan(){
   scanf("%s",fio);
   printf("Enter age:\n");
   scanf("%d",&age);
+  Bus::scan();
 }

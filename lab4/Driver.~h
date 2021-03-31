@@ -3,6 +3,10 @@ class Driver : public Bus {
     char* fio;
     int age;
   public:
+    Driver();
+    Driver(char* f, int a, char* p, char* m, int n, int s);
+    ~Driver();
+
     void setFio(char* f);
     void setAge(int a);
 
@@ -12,9 +16,6 @@ class Driver : public Bus {
     void print();
     void scan();
 
-    Driver();
-    Driver(char* f, int a, char* p, char* m, int n, int s);
-    ~Driver();
 
 };
  
