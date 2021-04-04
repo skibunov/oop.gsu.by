@@ -8,9 +8,19 @@ Collection::Collection(){
   size = 0;
 }
 
-Collection::~Collection(){
-  delete[] b;
+Collection::Collection(Collection &c){
+  for (int i = 0; i < c.getSize(); i++){
+    add(c.getObject(i));
+  }
 }
+
+Collection::~Collection(){
+  for (int i = 0; i < size; i++){
+    delete b[i];
+  }
+}
+
+
 
 void Collection::add(Bus *bus){
   b[size] = bus;
@@ -18,6 +28,7 @@ void Collection::add(Bus *bus){
 }
 
 void Collection::remove(int id){
+  delete b[id];
   for (int i = id; i < size - 1; i++){
     b[i] = b[i+1];
   }
@@ -42,9 +53,7 @@ void Collection::sort(){
   for (int i = 0; i < size - 1; i++){
     for (int j = size - 1; j > i; j--){
       if(strcmp(b[j - 1]->getProducer(),b[j]->getProducer()) > 0){
-        Bus* tmp = b[j - 1];
-        b[j - 1] = b[j];
-        b[j] = tmp;
+        swap(j - 1, j);
       }
     }
   }

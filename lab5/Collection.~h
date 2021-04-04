@@ -6,11 +6,10 @@ class Collection{
     int size;
   public:
     Collection();
-    ~Collection();
     void add(Bus *bus);
     void remove(int id);
     int getSize();
-    int getObject(int id);
+    Bus* getObject(int id);
     void swap(int firstId, int secondId);
     void sort();
     void print();

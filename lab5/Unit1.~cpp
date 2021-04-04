@@ -10,16 +10,27 @@
 
 #pragma argsused
 int main(int argc, char* argv[]){
-  Bus *b1 = new Bus;
-  Bus *b2 = new Bus("2","2",15,63);
-  Bus *b3 = new Bus("3","3",15,63);
 
   Collection c;
-  c.add(b3);
-  c.add(b2);
-  c.add(b1);
+  c.add(new Bus("MAZ105","Model05",35,14));
+  c.add(new Bus("MAZ215","Mode215",35,14));
+  c.add(new Bus("MAZ310","Model310",35,14));
+  c.print();
+
+  printf("%d\n", c.getSize());
+  Bus* getBus = c.getObject(0);
+  getBus->print();
+
+
+  c.remove(1);
+  c.print();
+
+  c.swap(0,2);
+  c.print();
+
   c.sort();
   c.print();
+
 
   getch();
   return 0;
