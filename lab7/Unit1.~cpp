@@ -1,0 +1,28 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+#include "Collection.h"
+//---------------------------------------------------------------------------
+
+#pragma argsused
+int main(int argc, char* argv[]){
+
+  Collection c;
+  Bus *b1 = new Driver("Andrey",18,"1","1",1,1);
+  Bus *b2 = new Bus("2","2",2,2);
+
+  c+=b1;
+  c+=b2;
+
+
+  c.print(1);
+
+  getch();
+  return 0;
+}
+//---------------------------------------------------------------------------
+
