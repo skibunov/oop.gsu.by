@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <string.h>
+#pragma hdrstop
 #include "Bus.h"
 #include "Driver.h"
 
@@ -77,12 +78,16 @@ char* Driver::getKey(){
   return key;
 }
 
+int Driver::getType(){
+  return 1;
+}
+
 void Driver::saveFile(FILE *f){
-  fprintf(f,"%s %d ",fio,age);
   Bus::saveFile(f);
+  fprintf(f,"%s %d",fio,age);
 }
 
 void Driver::readFile(FILE *f){
-  fscanf(f,"%s %d ",fio,&age);
   Bus::readFile(f);
+  fscanf(f,"%s %d",fio,&age);
 }

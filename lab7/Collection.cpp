@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <Collection.h>
+#pragma hdrstop
+#include "Collection.h"
 
 
 Collection::Collection(){
@@ -19,8 +20,6 @@ Collection::~Collection(){
     delete b[i];
   }
 }
-
-
 
 void Collection::add(Bus *bus){
   b[size] = bus;
@@ -57,7 +56,6 @@ void Collection::sort(){
       }
     }
   }
-
 }
 
 void Collection::print(){
@@ -75,15 +73,31 @@ void Collection::scan(int id){
 }
 
 void Collection::saveFile(FILE *f){
+  fprintf(f,"%d\n",size);
   for (int i = 0; i < size; i++){
     b[i]->saveFile(f);
+    fprintf(f,"\n");
   }
+  fclose(f);
 }
 
 void Collection::readFile(FILE *f){
-  for (int i = 0; i < size; i++){
-    b[i]->readFile(f);
+  int tmpSize = 0;
+  fscanf(f,"%d\n",&tmpSize);
+  int type;
+  for (int i = 0; i < tmpSize; i++){
+    fscanf(f,"%d",&type);
+    Bus *tmp;
+    if (type == 0){
+      tmp = new Bus();
+    }
+    else if (type == 1){
+      tmp = new Driver();
+    }
+    tmp->readFile(f);
+    add(tmp);
   }
+  fclose(f);
 }
 
 void Collection::operator+=(Bus *bus){

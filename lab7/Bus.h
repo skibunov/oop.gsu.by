@@ -25,6 +25,7 @@ class Bus{
     virtual void scan();
 
     virtual char* getKey();
+    virtual int getType();
     virtual void saveFile(FILE *f);
     virtual void readFile(FILE *f);
 

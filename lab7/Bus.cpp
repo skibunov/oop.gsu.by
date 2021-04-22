@@ -1,7 +1,9 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include <string.h>
-#include <Bus.h>
+#pragma hdrstop
+#include "Bus.h"
+
 
 void Bus::setProducer(char* p){
   delete[] producer;
@@ -96,12 +98,16 @@ char* Bus::getKey(){
   return key;
 }
 
+int Bus::getType(){
+  return 0;
+}
+
 void Bus::saveFile(FILE *f){
-  fprintf(f,"%s %s %d %d\n",producer,model,number,seat);
+  fprintf(f,"%d %s %s %d %d ",getType(),producer,model,number,seat);
 }
 
 void Bus::readFile(FILE *f){
-  fscanf(f,"%s %s %d %d\n",producer,&model,&number,&seat);
+  fscanf(f,"%s %s %d %d ",producer,&model,&number,&seat);
 }
 
 void Bus::operator=(Bus &b){

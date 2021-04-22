@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <Collection.h>
+#include "Collection.h"
 
 
 Collection::Collection(){
@@ -52,7 +52,7 @@ void Collection::swap(int firstId, int secondId){
 void Collection::sort(){
   for (int i = 0; i < size - 1; i++){
     for (int j = size - 1; j > i; j--){
-      if(strcmp(b[j - 1]->getProducer(),b[j]->getProducer()) > 0){
+      if(strcmp(b[j - 1]->getKey(),b[j]->getKey()) > 0){
         swap(j - 1, j);
       }
     }
@@ -70,6 +70,26 @@ void Collection::print(int id){
   b[id]->print();
 }
 
+void Collection::scan(int id){
+  b[id]->scan();
+}
+
+void Collection::saveFile(FILE *f){
+  fprintf(f,"%d\n",size);
+  for (int i = 0; i < size; i++){
+    b[i]->saveFile(f);
+  }
+}
+
+void Collection::readFile(FILE *f){
+  int className = -1;
+  fscanf(f,"%d",size);
+  for (int i = 0; i < size; i++){
+    fscanf(f,"%d",className);
+    if (className == 1)
+        printf("123");
+  }
+}
 
 void Collection::operator+=(Bus *bus){
   add(bus);

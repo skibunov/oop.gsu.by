@@ -69,4 +69,20 @@ void Driver::operator=(Driver &d){
     *((Bus *)this) = (Bus &)d;
   }
 }
- 
+
+char* Driver::getKey(){
+  char* key = new char[strlen(fio)+2];
+  strcpy(key,"2");
+  strcat(key,fio);
+  return key;
+}
+
+void Driver::saveFile(FILE *f){
+  fprintf(f,"%s %d ",fio,age);
+  Bus::saveFile(f);
+}
+
+void Driver::readFile(FILE *f){
+  fscanf(f,"%s %d ",fio,&age);
+  Bus::readFile(f);
+}
