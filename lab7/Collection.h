@@ -18,8 +18,8 @@ class Collection{
     void print();
     void print(int id);
     void scan(int id);
-    void saveFile(FILE *f);
-    void readFile(FILE *f);
+    void saveFile(char *name);
+    void readFile(char *name);
 
 
     void operator+=(Bus *bus);

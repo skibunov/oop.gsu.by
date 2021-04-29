@@ -48,10 +48,16 @@ void Collection::swap(int firstId, int secondId){
   b[secondId] = tmp;
 }
 
+int cmp(char* s1, char* s2){
+  return strcmp(s1,s2);
+}
+
 void Collection::sort(){
   for (int i = 0; i < size - 1; i++){
     for (int j = size - 1; j > i; j--){
-      if(strcmp(b[j - 1]->getKey(),b[j]->getKey()) > 0){
+      char tmp[80];
+      strcpy(tmp,b[j]->getKey());
+      if(cmp(b[j - 1]->getKey(),tmp) > 0){
         swap(j - 1, j);
       }
     }
@@ -72,7 +78,8 @@ void Collection::scan(int id){
   b[id]->scan();
 }
 
-void Collection::saveFile(FILE *f){
+void Collection::saveFile(char *name){
+  FILE *f = fopen(name,"w");
   fprintf(f,"%d\n",size);
   for (int i = 0; i < size; i++){
     b[i]->saveFile(f);
@@ -81,7 +88,8 @@ void Collection::saveFile(FILE *f){
   fclose(f);
 }
 
-void Collection::readFile(FILE *f){
+void Collection::readFile(char *name){
+  FILE *f = fopen(name,"r");
   int tmpSize = 0;
   fscanf(f,"%d\n",&tmpSize);
   int type;
@@ -102,10 +110,6 @@ void Collection::readFile(FILE *f){
 
 void Collection::operator+=(Bus *bus){
   add(bus);
-}
-
-void Collection::operator+=(Bus &bus){
-  add(new Bus(bus));
 }
 
 void Collection::operator-=(int id){

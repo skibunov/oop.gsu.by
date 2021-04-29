@@ -72,7 +72,7 @@ void Driver::operator=(Driver &d){
 }
 
 char* Driver::getKey(){
-  char* key = new char[strlen(fio)+2];
+  static char key[80];
   strcpy(key,"2");
   strcat(key,fio);
   return key;

@@ -4,6 +4,9 @@ class Bus{
     char model[80];
     int number;
     int seat;
+
+  protected:
+    static int countChar(char s,char* p);
   public:
     Bus();
     Bus(char* p, char* m, int n, int s);
@@ -28,7 +31,6 @@ class Bus{
     virtual int getType();
     virtual void saveFile(FILE *f);
     virtual void readFile(FILE *f);
-
 
     void operator=(Bus &b);
 

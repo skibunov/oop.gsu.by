@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#pragma hdrstop
 #include "Collection.h"
 
 
@@ -19,8 +20,6 @@ Collection::~Collection(){
     delete b[i];
   }
 }
-
-
 
 void Collection::add(Bus *bus){
   b[size] = bus;
@@ -49,15 +48,20 @@ void Collection::swap(int firstId, int secondId){
   b[secondId] = tmp;
 }
 
+int cmp(char* s1, char* s2){
+  return strcmp(s1,s2);
+}
+
 void Collection::sort(){
   for (int i = 0; i < size - 1; i++){
     for (int j = size - 1; j > i; j--){
-      if(strcmp(b[j - 1]->getKey(),b[j]->getKey()) > 0){
+      char tmp[80];
+      strcpy(tmp,b[j]->getKey());
+      if(cmp(b[j - 1]->getKey(),tmp) > 0){
         swap(j - 1, j);
       }
     }
   }
-
 }
 
 void Collection::print(){
@@ -74,21 +78,34 @@ void Collection::scan(int id){
   b[id]->scan();
 }
 
-void Collection::saveFile(FILE *f){
+void Collection::saveFile(char *name){
+  FILE *f = fopen(name,"w");
   fprintf(f,"%d\n",size);
   for (int i = 0; i < size; i++){
     b[i]->saveFile(f);
+    fprintf(f,"\n");
   }
+  fclose(f);
 }
 
-void Collection::readFile(FILE *f){
-  int className = -1;
-  fscanf(f,"%d",size);
-  for (int i = 0; i < size; i++){
-    fscanf(f,"%d",className);
-    if (className == 1)
-        printf("123");
+void Collection::readFile(char *name){
+  FILE *f = fopen(name,"r");
+  int tmpSize = 0;
+  fscanf(f,"%d\n",&tmpSize);
+  int type;
+  for (int i = 0; i < tmpSize; i++){
+    fscanf(f,"%d",&type);
+    Bus *tmp;
+    if (type == 0){
+      tmp = new Bus();
+    }
+    else if (type == 1){
+      tmp = new Driver();
+    }
+    tmp->readFile(f);
+    add(tmp);
   }
+  fclose(f);
 }
 
 void Collection::operator+=(Bus *bus){
@@ -96,7 +113,7 @@ void Collection::operator+=(Bus *bus){
 }
 
 void Collection::operator+=(Bus &bus){
-  add(new Bus(bus));
+  add(bus.newCopy());
 }
 
 void Collection::operator-=(int id){
@@ -122,4 +139,11 @@ Bus* Collection::operator[](char* name){
   }
 }
 
+int Collection::countSymb(char s){
+  char count;
+  for (int i = 0; i < size; i++){
+    count = count + b[i]->symb(s);
+  }
+  return count;
+}
  

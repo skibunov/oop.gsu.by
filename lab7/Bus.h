@@ -29,7 +29,6 @@ class Bus{
     virtual void saveFile(FILE *f);
     virtual void readFile(FILE *f);
 
-
     void operator=(Bus &b);
 
 };

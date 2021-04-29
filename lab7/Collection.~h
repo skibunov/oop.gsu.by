@@ -17,7 +17,11 @@ class Collection{
     void sort();
     void print();
     void print(int id);
+    void scan(int id);
+    void saveFile(char *name);
+    void readFile(char *name);
 
+    int countSymb(char s);
 
     void operator+=(Bus *bus);
     void operator+=(Bus &bus);

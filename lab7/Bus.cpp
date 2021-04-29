@@ -1,16 +1,9 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include <string.h>
+#include <iostream.h>
 #pragma hdrstop
 #include "Bus.h"
-
-
-void Bus::setProducer(char* p){
-  delete[] producer;
-  producer = new char[strlen(p)+1];
-  
-  strcpy(producer,p);
-}
 
 void Bus::setModel(char* m){
   strcpy(model,m);
@@ -41,7 +34,11 @@ int Bus::getSeat(){
 }
 
 void Bus::print(){
-  printf("producer = %s; model = %s; number = %d; seat = %d;\n",producer,model,number,seat);
+  cout << "producer = " << producer << "; "
+       << "model = " << model  << "; "
+       << "number = " << number << "; "
+       << "seat = " << seat << ";"
+       << endl;
 }
 
 void Bus::scan(){
@@ -92,7 +89,7 @@ Bus::Bus(char *t){
 }
 
 char* Bus::getKey(){
-  char* key = new char[strlen(producer)+2];
+  static char key[80];
   strcpy(key,"1");
   strcat(key,producer);
   return key;
@@ -116,7 +113,6 @@ void Bus::operator=(Bus &b){
   setNumber(b.getNumber());
   setSeat(b.getSeat());
 }
-
 
 Bus::~Bus(){
   delete[] producer;

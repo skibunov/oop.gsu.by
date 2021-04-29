@@ -1,8 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <string.h>
+#pragma hdrstop
 #include "Bus.h"
 #include "Driver.h"
+
+int Driver::symb(char s){
+  return Bus::symb(s) + Bus::countChar(s,fio);
+}
+
+Driver* Driver::newCopy(){
+  return new Driver(*this);
+}
 
 Driver::Driver(){
   fio = new char[1];
@@ -71,18 +80,22 @@ void Driver::operator=(Driver &d){
 }
 
 char* Driver::getKey(){
-  char* key = new char[strlen(fio)+2];
+  static char key[80];
   strcpy(key,"2");
   strcat(key,fio);
   return key;
 }
 
+int Driver::getType(){
+  return 1;
+}
+
 void Driver::saveFile(FILE *f){
-  fprintf(f,"%s %d ",fio,age);
   Bus::saveFile(f);
+  fprintf(f,"%s %d",fio,age);
 }
 
 void Driver::readFile(FILE *f){
-  fscanf(f,"%s %d ",fio,&age);
   Bus::readFile(f);
+  fscanf(f,"%s %d",fio,&age);
 }
