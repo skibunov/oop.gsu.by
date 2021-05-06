@@ -15,8 +15,8 @@ class Driver : public Bus {
 
     char* getFio();
     int getAge();
-    virtual void print();
-    virtual void scan();
+    virtual void print(ostream &ostr = cout);
+    virtual void scan(istream &istr = cin);
 
     virtual char* getKey();
     virtual int getType();
@@ -27,7 +27,7 @@ class Driver : public Bus {
     friend ostream& operator <<(ostream &ostr, Driver &d);
     friend istream& operator >>(istream &istr, Driver &d);
 
-
+    ostream& operator >>(ostream &ostr);
 
 };
 

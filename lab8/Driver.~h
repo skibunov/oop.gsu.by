@@ -24,6 +24,8 @@ class Driver : public Bus {
     virtual void readFile(ifstream &fin);
 
     void operator=(Driver &d);
+    friend ostream& operator <<(ostream &ostr, Driver &d);
+    friend istream& operator >>(istream &istr, Driver &d);
 
 
 

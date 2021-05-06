@@ -81,6 +81,30 @@ void Driver::operator=(Driver &d){
   }
 }
 
+ostream& operator <<(ostream &ostr, Driver &d){
+  ostr << "fio = " << d.fio << "; "
+       << "age = " << d.age  << ";"
+       << endl;
+  ostr << (Bus &) d;
+
+  return ostr;
+}
+
+istream& operator >>(istream &istr, Driver &d){
+  cout << "Enter fio:" <<endl;
+  istr >> d.fio;
+  flushall();
+
+  cout << "Enter age:" <<endl;
+  istr >> d.age;
+  flushall();
+
+  istr >> (Bus &) d;
+
+  return istr;
+}
+
+
 char* Driver::getKey(){
   static char key[80];
   strcpy(key,"2");

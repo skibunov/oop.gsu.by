@@ -81,7 +81,7 @@ Bus::Bus(char* p, char* m, int n, int s){
 
 Bus::Bus(Bus &b){
   producer = new char[strlen(b.getProducer())+1];
-  
+
   strcpy(producer,b.getProducer());
   strcpy(model,b.getModel());
   number = b.getNumber();
@@ -116,6 +116,35 @@ void Bus::saveFile(ofstream &fout){
 void Bus::readFile(ifstream &fin){
   fin.ignore();
   fin >> producer >> model >> number >> seat;
+}
+
+ostream& operator <<(ostream &ostr, Bus &b){
+  ostr << "producer = " << b.producer << "; "
+       << "model = " << b.model  << "; "
+       << "number = " << b.number << "; "
+       << "seat = " << b.seat << ";"
+       << endl;
+  return ostr;
+}
+
+istream& operator >>(istream &istr, Bus &b){
+  cout << "Enter producer:" <<endl;
+  istr >> b.producer;
+  flushall();
+
+  cout << "Enter model:" <<endl;
+  istr >> setw(80) >> b.model;
+  flushall();
+
+  cout << "Enter number:" <<endl;
+  istr  >> b.number;
+  flushall();
+
+  cout << "Enter seat:" <<endl;
+  istr  >> b.seat;
+  flushall();
+
+  return istr;
 }
 
 void Bus::operator=(Bus &b){

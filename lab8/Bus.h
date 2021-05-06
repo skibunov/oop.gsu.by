@@ -23,8 +23,8 @@ class Bus{
     int getNumber();
     int getSeat();
 
-    virtual void print();
-    virtual void scan();
+    virtual void print(ostream &ostr = cout);
+    virtual void scan(istream &istr = cin);
 
     virtual char* getKey();
     virtual int getType();
@@ -34,6 +34,9 @@ class Bus{
     void operator=(Bus &b);
     friend ostream& operator <<(ostream &ostr, Bus &b);
     friend istream& operator >>(istream &istr, Bus &b);
+
+
+    ostream& operator >>(ostream &ostr);
 
 };
 

@@ -32,6 +32,8 @@ class Bus{
     virtual void readFile(ifstream &fin);
 
     void operator=(Bus &b);
+    friend ostream& operator <<(ostream &ostr, Bus &b);
+    friend istream& operator >>(istream &istr, Bus &b);
 
 };
 

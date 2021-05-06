@@ -1,0 +1,2 @@
+istr >> (Bus &) d;
+ostr << (Bus &) d;

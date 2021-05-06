@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <iostream.h>
+#include <iomanip.h>
+#include <fstream.h>
 #pragma hdrstop
 #include "Collection.h"
 
@@ -48,16 +51,12 @@ void Collection::swap(int firstId, int secondId){
   b[secondId] = tmp;
 }
 
-int cmp(char* s1, char* s2){
-  return strcmp(s1,s2);
-}
-
 void Collection::sort(){
   for (int i = 0; i < size - 1; i++){
     for (int j = size - 1; j > i; j--){
       char tmp[80];
       strcpy(tmp,b[j]->getKey());
-      if(cmp(b[j - 1]->getKey(),tmp) > 0){
+      if(strcmp(b[j - 1]->getKey(),tmp) > 0){
         swap(j - 1, j);
       }
     }
@@ -79,22 +78,31 @@ void Collection::scan(int id){
 }
 
 void Collection::saveFile(char *name){
-  FILE *f = fopen(name,"w");
-  fprintf(f,"%d\n",size);
-  for (int i = 0; i < size; i++){
-    b[i]->saveFile(f);
-    fprintf(f,"\n");
+  ofstream fout(name, ios::out);
+  if (!fout){
+    cout << "File not found" << endl;
+    return;
   }
-  fclose(f);
+
+  fout << size << endl;
+  for (int i = 0; i < size; i++){
+    b[i]->saveFile(fout);
+    fout << endl;
+  }
+
 }
 
 void Collection::readFile(char *name){
-  FILE *f = fopen(name,"r");
+  ifstream fin(name, ios::in);
+  if (!fin){
+    cout << "Error open file output" << endl;
+    return;
+  }
   int tmpSize = 0;
-  fscanf(f,"%d\n",&tmpSize);
+  fin >> tmpSize;
   int type;
   for (int i = 0; i < tmpSize; i++){
-    fscanf(f,"%d",&type);
+    fin >> type;
     Bus *tmp;
     if (type == 0){
       tmp = new Bus();
@@ -102,10 +110,9 @@ void Collection::readFile(char *name){
     else if (type == 1){
       tmp = new Driver();
     }
-    tmp->readFile(f);
+    tmp->readFile(fin);
     add(tmp);
   }
-  fclose(f);
 }
 
 void Collection::operator+=(Bus *bus){

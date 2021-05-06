@@ -35,29 +35,29 @@ int Bus::getSeat(){
   return seat;
 }
 
-void Bus::print(){
-  cout << "producer = " << producer << "; "
+void Bus::print(ostream &ostr){
+  ostr << "producer = " << producer << "; "
        << "model = " << model  << "; "
        << "number = " << number << "; "
        << "seat = " << seat << ";"
        << endl;
 }
 
-void Bus::scan(){
+void Bus::scan(istream &istr){
   cout << "Enter producer:" <<endl;
-  cin >> producer;
+  istr >> producer;
   flushall();
 
   cout << "Enter model:" <<endl;
-  cin >> setw(80) >> model;
+  istr >> setw(80) >> model;
   flushall();
 
   cout << "Enter number:" <<endl;
-  cin  >> number;
+  istr  >> number;
   flushall();
 
   cout << "Enter seat:" <<endl;
-  cin  >> seat;
+  istr  >> seat;
   flushall();
 }
 
@@ -119,31 +119,12 @@ void Bus::readFile(ifstream &fin){
 }
 
 ostream& operator <<(ostream &ostr, Bus &b){
-  ostr << "producer = " << b.producer << "; "
-       << "model = " << b.model  << "; "
-       << "number = " << b.number << "; "
-       << "seat = " << b.seat << ";"
-       << endl;
+  b.print(ostr);
   return ostr;
 }
 
 istream& operator >>(istream &istr, Bus &b){
-  cout << "Enter producer:" <<endl;
-  istr >> b.producer;
-  flushall();
-
-  cout << "Enter model:" <<endl;
-  istr >> setw(80) >> b.model;
-  flushall();
-
-  cout << "Enter number:" <<endl;
-  istr  >> b.number;
-  flushall();
-
-  cout << "Enter seat:" <<endl;
-  istr  >> b.seat;
-  flushall();
-
+  b.scan(istr);
   return istr;
 }
 
@@ -157,4 +138,8 @@ void Bus::operator=(Bus &b){
 Bus::~Bus(){
   delete[] producer;
 }
- 
+
+ostream& Bus::operator >>(ostream &ostr){
+  print(ostr);
+  return ostr;
+}

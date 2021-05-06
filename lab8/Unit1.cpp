@@ -34,10 +34,11 @@ int main(int argc, char* argv[]){
   tmp.readFile("list.txt");
   tmp.print();
 
-  printf("____---------------------");
-  Driver b55("1",2,"3","4",5,6);
+  printf("-------------------------\n");
+  Driver b55;
   cin >> b55;
-  cout << b55;
+  //cout << b55;
+  b55 >> cout;
 
   getch();
   return 0;

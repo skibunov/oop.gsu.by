@@ -53,24 +53,24 @@ int Driver::getAge(){
   return age;
 }
 
-void Driver::print(){
-  cout << "fio = " << fio << "; "
+void Driver::print(ostream &ostr){
+  ostr << "fio = " << fio << "; "
        << "age = " << age  << ";"
        << endl;
-  Bus::print();
+  Bus::print(ostr);
 }
 
-void Driver::scan(){
+void Driver::scan(istream &istr){
 
   cout << "Enter fio:" <<endl;
-  cin >> fio;
+  istr >> fio;
   flushall();
 
   cout << "Enter age:" <<endl;
-  cin >> age;
+  istr >> age;
   flushall();
 
-  Bus::scan();
+  Bus::scan(istr);
 }
 
 void Driver::operator=(Driver &d){
@@ -82,25 +82,12 @@ void Driver::operator=(Driver &d){
 }
 
 ostream& operator <<(ostream &ostr, Driver &d){
-  ostr << "fio = " << d.fio << "; "
-       << "age = " << d.age  << ";"
-       << endl;
-  ostr << (Bus &) d;
-
+  d.print();
   return ostr;
 }
 
 istream& operator >>(istream &istr, Driver &d){
-  cout << "Enter fio:" <<endl;
-  istr >> d.fio;
-  flushall();
-
-  cout << "Enter age:" <<endl;
-  istr >> d.age;
-  flushall();
-
-  istr >> (Bus &) d;
-
+  d.scan();
   return istr;
 }
 
@@ -124,4 +111,9 @@ void Driver::saveFile(ofstream &fout){
 void Driver::readFile(ifstream &fin){
   Bus::readFile(fin);
   fin >> fio >> age;
+}
+
+ostream& Driver::operator >>(ostream &ostr){
+  ostr << *this;
+  return ostr;
 }
