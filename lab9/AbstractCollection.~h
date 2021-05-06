@@ -1,0 +1,14 @@
+template <typename type>
+class AbstractCollection{
+  private:
+    Bus *b[35];
+    int size;
+  public
+    AbstractCollection(){
+      size = 0;
+    }
+
+
+
+};
+ 

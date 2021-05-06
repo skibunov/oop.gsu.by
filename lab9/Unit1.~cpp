@@ -1,0 +1,21 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+#include <fstream.h>
+#include "Ab.h"
+//---------------------------------------------------------------------------
+
+#pragma argsused
+int main(int argc, char* argv[]){
+
+
+
+  getch();
+  return 0;
+}
+//---------------------------------------------------------------------------
+
